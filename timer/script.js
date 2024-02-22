@@ -1,4 +1,4 @@
-class Timer {
+export class Timer {
   /**
    *
    * @param {number} time value in second, duration of the timer
