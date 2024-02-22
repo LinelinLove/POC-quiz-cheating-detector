@@ -1,4 +1,9 @@
 class Timer {
+  /**
+   *
+   * @param {*} time value in second, duration of the timer
+   * @param {*} elementId element where the timer will be displayed
+   */
   constructor(time, elementId) {
     this.time = time;
     this.elementId = elementId;
@@ -14,7 +19,7 @@ class Timer {
   }
 
   /**
-   * Every 1, the timer is update
+   * Every 1s, the timer is update
    */
   startTimer() {
     this.intervalId = setInterval(() => {
@@ -38,10 +43,24 @@ class Timer {
     const remainingSeconds = Math.floor(this.time % 60);
     return `${minutes}m ${remainingSeconds}s`;
   }
+
+  /**
+   * Decrease the timer
+   * @param {*} malus value in seconds which will decrease to "this.time"
+   */
+  decreaseTimer(malus) {
+    if (this.time > 0) {
+      this.time -= malus;
+    }
+  }
 }
 
 // Example
 let span = document.getElementById("timer");
-const test = new Timer(5, span);
+let body = document.querySelector("body");
+const test = new Timer(10, span);
 test.displayTimer();
 test.startTimer();
+body.addEventListener("click", function () {
+  test.decreaseTimer(10);
+});
