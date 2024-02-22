@@ -4,7 +4,7 @@ class Timer {
    * @param {number} time value in second, duration of the timer
    * @param {HTMLElement} element element where the timer will be displayed
    */
-  constructor(time, elementId) {
+  constructor(time, element) {
     this.time = time;
     this.elementId = elementId;
     this.display = document.createElement("span");
