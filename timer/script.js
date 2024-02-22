@@ -1,5 +1,10 @@
-class Timer {
-  constructor(time, elementId) {
+export class Timer {
+  /**
+   *
+   * @param {number} time value in second, duration of the timer
+   * @param {HTMLElement} element element where the timer will be displayed
+   */
+  constructor(time, element) {
     this.time = time;
     this.elementId = elementId;
     this.display = document.createElement("span");
@@ -14,7 +19,7 @@ class Timer {
   }
 
   /**
-   * Every 1, the timer is update
+   * Every 1s, the timer is update
    */
   startTimer() {
     this.intervalId = setInterval(() => {
@@ -37,6 +42,15 @@ class Timer {
     const minutes = Math.floor((this.time % 3600) / 60);
     const remainingSeconds = Math.floor(this.time % 60);
     return `${minutes}m ${remainingSeconds}s`;
+  }
+  /**
+   * Decrease the timer
+   * @param {*} malus value in seconds which will decrease to "this.time"
+   */
+  decreaseTimer(malus) {
+    if (this.time > 0) {
+      this.time -= malus;
+    }
   }
 }
 
