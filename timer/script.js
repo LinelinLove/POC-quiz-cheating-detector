@@ -43,7 +43,6 @@ class Timer {
     const remainingSeconds = Math.floor(this.time % 60);
     return `${minutes}m ${remainingSeconds}s`;
   }
-
   /**
    * Decrease the timer
    * @param {*} malus value in seconds which will decrease to "this.time"
@@ -57,10 +56,6 @@ class Timer {
 
 // Example
 let span = document.getElementById("timer");
-let body = document.querySelector("body");
-const test = new Timer(10, span);
+const test = new Timer(5, span);
 test.displayTimer();
 test.startTimer();
-body.addEventListener("click", function () {
-  test.decreaseTimer(10);
-});
