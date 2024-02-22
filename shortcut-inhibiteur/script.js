@@ -1,4 +1,4 @@
-class shortcutInhibitor {
+export class shortcutInhibitor {
   constructor() {
     this.prohibitedCharacters = "abcdefghijklmnopqrstuvwxyz";
   }
