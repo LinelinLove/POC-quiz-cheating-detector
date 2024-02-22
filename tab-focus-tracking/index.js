@@ -1,28 +1,23 @@
-class TabFocusTracking {
+export class TabFocusTracking {
   userHasLeftTheTab = false;
 
-  constructor(tagToChangeSelector) {
-    this.setWindowBlurListener(tagToChangeSelector);
+  constructor(action) {
+    this.setWindowBlurListener(action);
   }
 
   /**
    * Sets up the listener for unfocusing the tab
-   * @param {string} selector selector of the tag to change
+   * @param {() => void} action applied on event
    */
-  setWindowBlurListener(selector) {
+  setWindowBlurListener(action) {
     window.addEventListener("blur", () => {
-      this.changeTemplate(selector);
+      action();
+      this.userHasLeftTheTab = true;
     });
-  }
-
-  /**
-   * Changes the HTML of the element chosen
-   * @param {string} selector selector of the tag to change
-   */
-  changeTemplate(selector) {
-    document.querySelector(selector).textContent = "TRICHEUR";
-    this.userHasLeftTheTab = true;
   }
 }
 
-const tabFocusTrack = new TabFocusTracking("h1");
+// Example
+const tabFocusTrack = new TabFocusTracking(() => {
+  document.querySelector("h1").textContent = "Triche";
+});
